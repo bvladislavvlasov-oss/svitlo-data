@@ -8,6 +8,8 @@ from zoneinfo import ZoneInfo
 from curl_cffi.requests import AsyncSession
 from dtek_client import DtekClient
 from dtek_client.browser_auth import get_cleared_cookies
+from dtek_client.exceptions import DtekDataError
+from dtek_client.models import FactSchedule
 
 BASE = "https://www.dtek-krem.com.ua"
 PAGE = f"{BASE}/ua/shutdowns"
@@ -69,12 +71,36 @@ async def main() -> None:
         headers["X-CSRF-Token"] = csrf
     session = AsyncSession(timeout=20.0, headers=headers, cookies=cookies, impersonate="chrome120")
 
+    fact = None
     async with DtekClient("krem", ajax_url=f"{BASE}/ua/ajax", session=session) as client:
-        resp = await client.get_home_num(CITY, STREET)
+        now = dt.datetime.now(KYIV).strftime("%d.%m.%Y %H:%M")
+        # Спроба 1: за адресою (як робить сайт), з updateFact
+        try:
+            resp = await client.get_home_num(CITY, STREET, update_fact=now)
+            fact = resp.fact
+            print("getHomeNum OK, будинків:", len(resp.houses))
+        except DtekDataError as exc:
+            print("getHomeNum помилка:", str(getattr(exc, "raw", ""))[:800])
+            # Діагностика: як сайт пише населений пункт
+            try:
+                raw = await client._post({"method": "getStreets"})
+                cities = raw.get("streets", {}) if isinstance(raw, dict) else {}
+                similar = [c for c in cities if "Чабан" in c]
+                print("Схожі нас. пункти:", similar)
+                for c in similar:
+                    print(c, "→ вулиці з 'Машин':", [s for s in cities[c] if "Машин" in s])
+            except Exception as e2:  # noqa: BLE001
+                print("getStreets помилка:", e2)
+        # Спроба 2: загальний графік без адреси
+        if fact is None:
+            raw = await client._post({"method": "checkDisconUpdate", "update": "01.01.2000 00:00"})
+            print("checkDisconUpdate ключі:", list(raw.keys()) if isinstance(raw, dict) else type(raw))
+            if isinstance(raw, dict) and isinstance(raw.get("fact"), dict):
+                fact = FactSchedule.model_validate(raw["fact"])
 
     days = []
-    if resp.fact:
-        for ts, groups in sorted(resp.fact.days.items(), key=lambda x: int(x[0])):
+    if fact:
+        for ts, groups in sorted(fact.days.items(), key=lambda x: int(x[0])):
             slots = groups.get(GROUP)
             if not slots:
                 continue
@@ -87,7 +113,7 @@ async def main() -> None:
 
     data = {
         "group": GROUP,
-        "sourceUpdated": resp.fact.update if resp.fact else None,
+        "sourceUpdated": fact.update if fact else None,
         "days": days,
     }
     with open("light.json", "w", encoding="utf-8") as f:
