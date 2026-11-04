@@ -11,18 +11,33 @@ permissions:
 jobs:
   fetch:
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install dtek-blackout-client==0.1.12
-      - run: playwright install --with-deps chromium
+
+      # Браузер для обходу захисту ДТЕК зберігаємо між запусками
+      - name: Cache Playwright browser
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-dtek-0.1.12
+
+      # Завантажуємо браузер лише якщо його немає в кеші (без важких системних пакетів)
+      - name: Install Playwright browser
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: playwright install chromium
+
       - run: python fetch_light.py
         env:
           DTEK_CITY: ${{ secrets.DTEK_CITY }}
           DTEK_STREET: ${{ secrets.DTEK_STREET }}
           DTEK_GROUP: GPV2.2
+
       - run: |
           git config user.name "light-bot"
           git config user.email "light-bot@users.noreply.github.com"
