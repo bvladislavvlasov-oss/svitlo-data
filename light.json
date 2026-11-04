@@ -1,72 +1,7 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "03.11.2026 21:39",
+ "sourceUpdated": "04.11.2026 00:08",
  "days": [
-  {
-   "date": "2026-11-03",
-   "halfHours": [
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "on"
-   ],
-   "outages": [
-    {
-     "start": "06:00",
-     "end": "13:30",
-     "maybe": false
-    },
-    {
-     "start": "16:30",
-     "end": "23:30",
-     "maybe": false
-    }
-   ]
-  },
   {
    "date": "2026-11-04",
    "halfHours": [
