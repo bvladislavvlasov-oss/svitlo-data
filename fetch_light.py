@@ -16,6 +16,7 @@ PAGE = f"{BASE}/ua/shutdowns"
 CITY = os.environ["DTEK_CITY"]          # напр. "с. Чабани" — як на сайті ДТЕК
 STREET = os.environ["DTEK_STREET"]      # напр. "вул. ..." — як на сайті ДТЕК
 GROUP = os.environ.get("DTEK_GROUP", "GPV2.2")
+PUMP_GROUP = os.environ.get("DTEK_PUMP_GROUP", "GPV1.2")  # насосна — від неї залежить вода
 KYIV = ZoneInfo("Europe/Kyiv")
 
 
@@ -98,23 +99,30 @@ async def main() -> None:
             if isinstance(raw, dict) and isinstance(raw.get("fact"), dict):
                 fact = FactSchedule.model_validate(raw["fact"])
 
-    days = []
-    if fact:
+    def build_days(group: str) -> list[dict]:
+        out = []
+        if not fact:
+            return out
         for ts, groups in sorted(fact.days.items(), key=lambda x: int(x[0])):
-            slots = groups.get(GROUP)
+            slots = groups.get(group)
             if not slots:
                 continue
             hh = half_hours(slots)
-            days.append({
+            out.append({
                 "date": dt.datetime.fromtimestamp(int(ts), KYIV).date().isoformat(),
                 "halfHours": hh,
                 "outages": intervals(hh),
             })
+        return out
+
+    days = build_days(GROUP)
+    pump_days = build_days(PUMP_GROUP)
 
     data = {
         "group": GROUP,
         "sourceUpdated": fact.update if fact else None,
         "days": days,
+        "pump": {"group": PUMP_GROUP, "days": pump_days},
     }
     with open("light.json", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
