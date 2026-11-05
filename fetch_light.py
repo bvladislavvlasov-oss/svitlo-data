@@ -63,18 +63,60 @@ def intervals(hh: list[str]) -> list[dict]:
 
 
 def emergency(houses: dict, group: str, house: str = "") -> dict | None:
-    """Екстрене / аварійне відключення з сайту ДТЕК: тип, початок, орієнтовне відновлення."""
+    """Екстрене / аварійне відключення з сайту ДТЕК: тип, початок, орієнтовне відновлення.
+
+    houses — сирий словник getHomeNum: номер будинку → {sub_type, start_date, end_date, type, sub_type_reason}.
+    """
     if not houses:
         return None
-    entries = []
     if house and house in houses:
         entries = [houses[house]]
     else:
-        entries = [h for h in houses.values() if group in (h.group_ids or [])]
+        entries = [h for h in houses.values() if group in (h.get("sub_type_reason") or [])]
     for h in entries:
-        if h.has_current_outage:
-            return {"type": h.sub_type, "start": h.start_date, "end": h.end_date, "kind": h.outage_type}
+        if h.get("sub_type") or h.get("start_date"):
+            return {"type": h.get("sub_type", ""), "start": h.get("start_date", ""),
+                    "end": h.get("end_date", ""), "kind": h.get("type", "")}
     return None
+
+
+async def browser_houses(addresses: list[tuple[str, str]]) -> list[dict]:
+    """getHomeNum прямо зі сторінки ДТЕК у браузері (так, як робить сам сайт).
+
+    Через curl_cffi сервер відповідає {'result': False, 'text': 'Error'}, а з браузера — повний список будинків.
+    """
+    from playwright.async_api import async_playwright
+    from playwright_stealth import Stealth  # type: ignore
+
+    out: list[dict] = [{} for _ in addresses]
+    try:
+        async with Stealth().use_async(async_playwright()) as p:
+            browser = await p.chromium.launch(headless=True)
+            page = await browser.new_page()
+            await page.goto(PAGE, wait_until="domcontentloaded", timeout=60000)
+            await page.wait_for_selector('meta[name="csrf-token"]', state="attached", timeout=60000)
+            await page.wait_for_function("() => window.jQuery !== undefined", timeout=30000)
+            for i, (city, street) in enumerate(addresses):
+                answer = await page.evaluate(
+                    """([city, street]) => new Promise(resolve => {
+                        jQuery.post('/ua/ajax', {method: 'getHomeNum', data: [
+                            {name: 'city', value: city}, {name: 'street', value: street},
+                            {name: 'house_num', value: ''}, {name: 'updateFact', value: ''}]},
+                          a => resolve(a), 'JSON').fail(x => resolve({result: false, status: x.status}));
+                    })""",
+                    [city, street],
+                )
+                data = answer.get("data") if isinstance(answer, dict) else None
+                if isinstance(data, dict):
+                    out[i] = data
+                    print("браузер getHomeNum OK, будинків:", len(data))
+                else:
+                    print("браузер getHomeNum:", {k: answer.get(k) for k in ("result", "text", "status")}
+                          if isinstance(answer, dict) else type(answer))
+            await browser.close()
+    except Exception as exc:  # noqa: BLE001
+        print("браузер getHomeNum помилка:", str(exc)[:300])
+    return out
 
 
 async def main() -> None:
@@ -93,21 +135,13 @@ async def main() -> None:
     session = AsyncSession(timeout=20.0, headers=headers, cookies=cookies, impersonate="chrome120")
 
     fact = None
-    houses: dict = {}
-    pump_houses: dict = {}
     async with DtekClient("krem", ajax_url=f"{BASE}/ua/ajax", session=session) as client:
         now = dt.datetime.now(KYIV).strftime("%d.%m.%Y %H:%M")
         # Спроба 1: за адресою (як робить сайт), з updateFact
         try:
             resp = await client.get_home_num(CITY, STREET, update_fact=now)
             fact = resp.fact
-            houses = resp.houses
             print("getHomeNum OK, будинків:", len(resp.houses))
-            if PUMP_CITY and PUMP_STREET:
-                try:
-                    pump_houses = (await client.get_home_num(PUMP_CITY, PUMP_STREET, update_fact=now)).houses
-                except Exception as e3:  # noqa: BLE001
-                    print("насосна: getHomeNum помилка:", str(e3)[:300])
         except DtekDataError as exc:
             print("getHomeNum помилка:", str(getattr(exc, "raw", ""))[:800])
             # Діагностика: як сайт пише населений пункт
@@ -142,6 +176,16 @@ async def main() -> None:
                 "outages": intervals(hh),
             })
         return out
+
+    # будинки з полями аварійних відключень — запитом зі сторінки в браузері
+    addresses = [(CITY, STREET)] + ([(PUMP_CITY, PUMP_STREET)] if PUMP_CITY and PUMP_STREET else [])
+    found = await browser_houses(addresses)
+    houses = found[0]
+    pump_houses = found[1] if len(found) > 1 else {}
+    if HOUSE:
+        print("будинок знайдено:", HOUSE in houses, "черга:", (houses.get(HOUSE) or {}).get("sub_type_reason"))
+    if PUMP_HOUSE and pump_houses:
+        print("насосну знайдено:", PUMP_HOUSE in pump_houses, "черга:", (pump_houses.get(PUMP_HOUSE) or {}).get("sub_type_reason"))
 
     days = build_days(GROUP)
     pump_days = build_days(PUMP_GROUP)
