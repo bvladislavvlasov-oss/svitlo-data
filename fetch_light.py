@@ -17,6 +17,11 @@ CITY = os.environ["DTEK_CITY"]          # напр. "с. Чабани" — як 
 STREET = os.environ["DTEK_STREET"]      # напр. "вул. ..." — як на сайті ДТЕК
 GROUP = os.environ.get("DTEK_GROUP", "GPV2.2")
 PUMP_GROUP = os.environ.get("DTEK_PUMP_GROUP", "GPV1.2")  # насосна — від неї залежить вода
+HOUSE = os.environ.get("DTEK_HOUSE", "")                  # номер будинку (необов'язково)
+# адреса насосної (необов'язково); без неї шукаємо будинки черги 1.2 на своїй вулиці
+PUMP_CITY = os.environ.get("DTEK_PUMP_CITY", "")
+PUMP_STREET = os.environ.get("DTEK_PUMP_STREET", "")
+PUMP_HOUSE = os.environ.get("DTEK_PUMP_HOUSE", "")
 KYIV = ZoneInfo("Europe/Kyiv")
 
 
@@ -57,6 +62,21 @@ def intervals(hh: list[str]) -> list[dict]:
     return res
 
 
+def emergency(houses: dict, group: str, house: str = "") -> dict | None:
+    """Екстрене / аварійне відключення з сайту ДТЕК: тип, початок, орієнтовне відновлення."""
+    if not houses:
+        return None
+    entries = []
+    if house and house in houses:
+        entries = [houses[house]]
+    else:
+        entries = [h for h in houses.values() if group in (h.group_ids or [])]
+    for h in entries:
+        if h.has_current_outage:
+            return {"type": h.sub_type, "start": h.start_date, "end": h.end_date, "kind": h.outage_type}
+    return None
+
+
 async def main() -> None:
     cookies, csrf = await get_cleared_cookies(PAGE)
     headers = {
@@ -73,13 +93,21 @@ async def main() -> None:
     session = AsyncSession(timeout=20.0, headers=headers, cookies=cookies, impersonate="chrome120")
 
     fact = None
+    houses: dict = {}
+    pump_houses: dict = {}
     async with DtekClient("krem", ajax_url=f"{BASE}/ua/ajax", session=session) as client:
         now = dt.datetime.now(KYIV).strftime("%d.%m.%Y %H:%M")
         # Спроба 1: за адресою (як робить сайт), з updateFact
         try:
             resp = await client.get_home_num(CITY, STREET, update_fact=now)
             fact = resp.fact
+            houses = resp.houses
             print("getHomeNum OK, будинків:", len(resp.houses))
+            if PUMP_CITY and PUMP_STREET:
+                try:
+                    pump_houses = (await client.get_home_num(PUMP_CITY, PUMP_STREET, update_fact=now)).houses
+                except Exception as e3:  # noqa: BLE001
+                    print("насосна: getHomeNum помилка:", str(e3)[:300])
         except DtekDataError as exc:
             print("getHomeNum помилка:", str(getattr(exc, "raw", ""))[:800])
             # Діагностика: як сайт пише населений пункт
@@ -122,8 +150,15 @@ async def main() -> None:
         "group": GROUP,
         "sourceUpdated": fact.update if fact else None,
         "days": days,
-        "pump": {"group": PUMP_GROUP, "days": pump_days},
+        "emergency": emergency(houses, GROUP, HOUSE),
+        "pump": {
+            "group": PUMP_GROUP,
+            "days": pump_days,
+            "emergency": emergency(pump_houses, PUMP_GROUP, PUMP_HOUSE) if pump_houses
+                         else emergency(houses, PUMP_GROUP),
+        },
     }
+    print("екстрені:", data["emergency"], data["pump"]["emergency"])
     with open("light.json", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
     print(json.dumps(data, ensure_ascii=False)[:500])
