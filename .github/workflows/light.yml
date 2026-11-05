@@ -37,6 +37,10 @@ jobs:
           DTEK_CITY: ${{ secrets.DTEK_CITY }}
           DTEK_STREET: ${{ secrets.DTEK_STREET }}
           DTEK_GROUP: GPV2.2
+          DTEK_HOUSE: ${{ secrets.DTEK_HOUSE }}
+          DTEK_PUMP_CITY: ${{ secrets.DTEK_PUMP_CITY }}
+          DTEK_PUMP_STREET: ${{ secrets.DTEK_PUMP_STREET }}
+          DTEK_PUMP_HOUSE: ${{ secrets.DTEK_PUMP_HOUSE }}
 
       - run: |
           git config user.name "light-bot"
