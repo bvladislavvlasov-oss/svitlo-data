@@ -73,6 +73,7 @@
    ]
   }
  ],
+ "emergency": null,
  "pump": {
   "group": "GPV1.2",
   "days": [
@@ -151,6 +152,7 @@
      }
     ]
    }
-  ]
+  ],
+  "emergency": null
  }
 }
