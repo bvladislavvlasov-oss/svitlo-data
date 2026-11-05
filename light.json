@@ -1,6 +1,6 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "05.11.2026 08:10",
+ "sourceUpdated": "05.11.2026 19:51",
  "days": [
   {
    "date": "2026-11-05",
@@ -67,6 +67,76 @@
     },
     {
      "start": "21:00",
+     "end": "24:00",
+     "maybe": false
+    }
+   ]
+  },
+  {
+   "date": "2026-11-06",
+   "halfHours": [
+    "off",
+    "off",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off"
+   ],
+   "outages": [
+    {
+     "start": "00:00",
+     "end": "01:00",
+     "maybe": false
+    },
+    {
+     "start": "07:30",
+     "end": "15:00",
+     "maybe": false
+    },
+    {
+     "start": "18:00",
      "end": "24:00",
      "maybe": false
     }
@@ -148,6 +218,76 @@
      {
       "start": "21:00",
       "end": "24:00",
+      "maybe": false
+     }
+    ]
+   },
+   {
+    "date": "2026-11-06",
+    "halfHours": [
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "on",
+     "on",
+     "on",
+     "on"
+    ],
+    "outages": [
+     {
+      "start": "00:00",
+      "end": "04:30",
+      "maybe": false
+     },
+     {
+      "start": "07:30",
+      "end": "15:00",
+      "maybe": false
+     },
+     {
+      "start": "18:00",
+      "end": "22:00",
       "maybe": false
      }
     ]
