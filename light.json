@@ -1,6 +1,6 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "06.11.2026 23:23",
+ "sourceUpdated": "07.11.2026 10:51",
  "days": [
   {
    "date": "2026-11-07",
@@ -99,8 +99,8 @@
      "off",
      "off",
      "off",
-     "off",
-     "off",
+     "on",
+     "on",
      "off",
      "off",
      "off",
@@ -124,7 +124,7 @@
      "off",
      "off",
      "off",
-     "on",
+     "off",
      "on",
      "on",
      "on"
@@ -137,12 +137,17 @@
      },
      {
       "start": "04:30",
+      "end": "09:30",
+      "maybe": false
+     },
+     {
+      "start": "10:30",
       "end": "12:00",
       "maybe": false
      },
      {
       "start": "15:00",
-      "end": "22:00",
+      "end": "22:30",
       "maybe": false
      }
     ]
