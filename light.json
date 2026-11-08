@@ -1,6 +1,6 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "08.11.2026 00:53",
+ "sourceUpdated": "08.11.2026 09:28",
  "days": [
   {
    "date": "2026-11-08",
@@ -29,6 +29,8 @@
     "on",
     "on",
     "on",
+    "on",
+    "on",
     "off",
     "off",
     "off",
@@ -50,8 +52,6 @@
     "on",
     "on",
     "on",
-    "off",
-    "off",
     "off"
    ],
    "outages": [
@@ -61,24 +61,19 @@
      "maybe": false
     },
     {
-     "start": "12:00",
-     "end": "19:30",
+     "start": "13:00",
+     "end": "20:30",
      "maybe": false
     },
     {
-     "start": "22:30",
+     "start": "23:30",
      "end": "24:00",
      "maybe": false
     }
    ]
   }
  ],
- "emergency": {
-  "type": "Стабілізаційне відключення (Згідно графіку погодинних відключень)",
-  "start": "02:15 08.11.2026",
-  "end": "09:00 08.11.2026",
-  "kind": "2"
- },
+ "emergency": null,
  "pump": {
   "group": "GPV1.2",
   "days": [
