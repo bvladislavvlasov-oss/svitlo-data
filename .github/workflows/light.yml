@@ -29,7 +29,6 @@ jobs:
 
       # Завантажуємо браузер лише якщо його немає в кеші (без важких системних пакетів)
       - name: Install Playwright browser
-        if: steps.pw-cache.outputs.cache-hit != 'true'
         run: playwright install chromium
 
       - run: python fetch_light.py
