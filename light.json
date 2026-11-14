@@ -1,13 +1,10 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "12.11.2026 20:47",
+ "sourceUpdated": "13.11.2026 21:46",
  "days": [
   {
-   "date": "2026-11-13",
+   "date": "2026-11-14",
    "halfHours": [
-    "off",
-    "off",
-    "off",
     "on",
     "on",
     "on",
@@ -16,19 +13,16 @@
     "on",
     "on",
     "on",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
     "on",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
+    "on",
     "on",
     "on",
     "on",
@@ -48,26 +42,27 @@
     "off",
     "off",
     "off",
-    "off",
-    "off",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
     "on",
     "on",
     "on"
    ],
    "outages": [
     {
-     "start": "00:00",
-     "end": "01:30",
+     "start": "04:00",
+     "end": "08:00",
      "maybe": false
     },
     {
-     "start": "06:00",
-     "end": "12:00",
-     "maybe": false
-    },
-    {
-     "start": "17:30",
-     "end": "22:30",
+     "start": "14:30",
+     "end": "18:30",
      "maybe": false
     }
    ]
@@ -78,13 +73,8 @@
   "group": "GPV1.2",
   "days": [
    {
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "halfHours": [
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
      "on",
      "on",
      "on",
@@ -102,8 +92,7 @@
      "off",
      "off",
      "off",
-     "on",
-     "on",
+     "off",
      "on",
      "on",
      "on",
@@ -125,24 +114,25 @@
      "off",
      "off",
      "off",
-     "off",
-     "off",
-     "off"
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on"
     ],
     "outages": [
      {
-      "start": "00:00",
-      "end": "02:30",
+      "start": "05:00",
+      "end": "09:00",
       "maybe": false
      },
      {
-      "start": "07:30",
-      "end": "11:00",
-      "maybe": false
-     },
-     {
-      "start": "18:30",
-      "end": "24:00",
+      "start": "15:30",
+      "end": "19:30",
       "maybe": false
      }
     ]
