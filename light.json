@@ -1,6 +1,6 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "20.11.2026 07:53",
+ "sourceUpdated": "20.11.2026 10:22",
  "days": [
   {
    "date": "2026-11-20",
@@ -103,6 +103,8 @@
      "off",
      "off",
      "off",
+     "off",
+     "off",
      "on",
      "on",
      "on",
@@ -123,8 +125,6 @@
      "off",
      "off",
      "off",
-     "off",
-     "on",
      "on",
      "on",
      "on"
@@ -132,12 +132,12 @@
     "outages": [
      {
       "start": "08:00",
-      "end": "11:30",
+      "end": "12:30",
       "maybe": false
      },
      {
-      "start": "18:00",
-      "end": "22:00",
+      "start": "19:00",
+      "end": "22:30",
       "maybe": false
      }
     ]
