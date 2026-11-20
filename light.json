@@ -1,11 +1,148 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "19.11.2026 19:32",
- "days": [],
- "emergency": null,
+ "sourceUpdated": "20.11.2026 07:53",
+ "days": [
+  {
+   "date": "2026-11-20",
+   "halfHours": [
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "on",
+    "on",
+    "on",
+    "on"
+   ],
+   "outages": [
+    {
+     "start": "07:30",
+     "end": "11:30",
+     "maybe": false
+    },
+    {
+     "start": "18:00",
+     "end": "22:00",
+     "maybe": false
+    }
+   ]
+  }
+ ],
+ "emergency": {
+  "type": "Стабілізаційне відключення (Згідно графіку погодинних відключень)",
+  "start": "07:45 20.11.2026",
+  "end": "11:30 20.11.2026",
+  "kind": "2"
+ },
  "pump": {
   "group": "GPV1.2",
-  "days": [],
+  "days": [
+   {
+    "date": "2026-11-20",
+    "halfHours": [
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "on",
+     "on",
+     "on",
+     "on"
+    ],
+    "outages": [
+     {
+      "start": "08:00",
+      "end": "11:30",
+      "maybe": false
+     },
+     {
+      "start": "18:00",
+      "end": "22:00",
+      "maybe": false
+     }
+    ]
+   }
+  ],
   "emergency": null
  }
 }
