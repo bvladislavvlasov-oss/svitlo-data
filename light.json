@@ -1,77 +1,7 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "24.11.2026 21:25",
+ "sourceUpdated": "25.11.2026 00:30",
  "days": [
-  {
-   "date": "2026-11-24",
-   "halfHours": [
-    "off",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "off",
-    "on",
-    "on",
-    "on",
-    "on"
-   ],
-   "outages": [
-    {
-     "start": "00:00",
-     "end": "00:30",
-     "maybe": false
-    },
-    {
-     "start": "06:00",
-     "end": "12:30",
-     "maybe": false
-    },
-    {
-     "start": "18:00",
-     "end": "22:00",
-     "maybe": false
-    }
-   ]
-  },
   {
    "date": "2026-11-25",
    "halfHours": [
@@ -138,80 +68,10 @@
    ]
   }
  ],
- "emergency": {
-  "type": "Екстренні відключення (Аварійне без застосування графіку погодинних відключень)",
-  "start": "18:21 24.11.2026",
-  "end": "02:00 25.11.2026",
-  "kind": "2"
- },
+ "emergency": null,
  "pump": {
   "group": "GPV1.2",
   "days": [
-   {
-    "date": "2026-11-24",
-    "halfHours": [
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "off",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on"
-    ],
-    "outages": [
-     {
-      "start": "06:00",
-      "end": "11:00",
-      "maybe": false
-     },
-     {
-      "start": "16:00",
-      "end": "20:30",
-      "maybe": false
-     }
-    ]
-   },
    {
     "date": "2026-11-25",
     "halfHours": [
