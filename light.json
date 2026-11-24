@@ -1,6 +1,6 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "24.11.2026 10:56",
+ "sourceUpdated": "24.11.2026 21:25",
  "days": [
   {
    "date": "2026-11-24",
@@ -71,12 +71,77 @@
      "maybe": false
     }
    ]
+  },
+  {
+   "date": "2026-11-25",
+   "halfHours": [
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "off",
+    "off"
+   ],
+   "outages": [
+    {
+     "start": "14:30",
+     "end": "20:00",
+     "maybe": false
+    },
+    {
+     "start": "23:00",
+     "end": "24:00",
+     "maybe": false
+    }
+   ]
   }
  ],
  "emergency": {
-  "type": "Стабілізаційне відключення (Згідно графіку погодинних відключень)",
-  "start": "06:12 24.11.2026",
-  "end": "12:30 24.11.2026",
+  "type": "Екстренні відключення (Аварійне без застосування графіку погодинних відключень)",
+  "start": "18:21 24.11.2026",
+  "end": "02:00 25.11.2026",
   "kind": "2"
  },
  "pump": {
@@ -126,7 +191,7 @@
      "off",
      "off",
      "off",
-     "off",
+     "on",
      "on",
      "on",
      "on",
@@ -142,7 +207,72 @@
      },
      {
       "start": "16:00",
-      "end": "21:00",
+      "end": "20:30",
+      "maybe": false
+     }
+    ]
+   },
+   {
+    "date": "2026-11-25",
+    "halfHours": [
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "off",
+     "off"
+    ],
+    "outages": [
+     {
+      "start": "12:00",
+      "end": "18:00",
+      "maybe": false
+     },
+     {
+      "start": "23:00",
+      "end": "24:00",
       "maybe": false
      }
     ]
