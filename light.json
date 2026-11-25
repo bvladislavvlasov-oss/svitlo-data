@@ -1,6 +1,6 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "25.11.2026 21:14",
+ "sourceUpdated": "25.11.2026 22:16",
  "days": [
   {
    "date": "2026-11-25",
@@ -51,7 +51,7 @@
     "on",
     "on",
     "on",
-    "off",
+    "on",
     "off"
    ],
    "outages": [
@@ -61,8 +61,68 @@
      "maybe": false
     },
     {
-     "start": "23:00",
+     "start": "23:30",
      "end": "24:00",
+     "maybe": false
+    }
+   ]
+  },
+  {
+   "date": "2026-11-26",
+   "halfHours": [
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "off",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on"
+   ],
+   "outages": [
+    {
+     "start": "11:00",
+     "end": "17:30",
      "maybe": false
     }
    ]
@@ -120,7 +180,7 @@
      "on",
      "on",
      "on",
-     "on",
+     "off",
      "off",
      "off"
     ],
@@ -131,7 +191,72 @@
       "maybe": false
      },
      {
-      "start": "23:00",
+      "start": "22:30",
+      "end": "24:00",
+      "maybe": false
+     }
+    ]
+   },
+   {
+    "date": "2026-11-26",
+    "halfHours": [
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off",
+     "off"
+    ],
+    "outages": [
+     {
+      "start": "10:00",
+      "end": "14:30",
+      "maybe": false
+     },
+     {
+      "start": "20:30",
       "end": "24:00",
       "maybe": false
      }
