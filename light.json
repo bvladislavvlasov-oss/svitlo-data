@@ -1,16 +1,10 @@
 {
  "group": "GPV2.2",
- "sourceUpdated": "26.11.2026 17:26",
+ "sourceUpdated": "27.11.2026 00:05",
  "days": [
   {
-   "date": "2026-11-26",
+   "date": "2026-11-27",
    "halfHours": [
-    "off",
-    "off",
-    "on",
-    "on",
-    "on",
-    "on",
     "on",
     "on",
     "on",
@@ -36,19 +30,25 @@
     "off",
     "off",
     "off",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
+    "on",
     "off",
     "off",
     "off",
     "off",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
-    "on",
+    "off",
+    "off",
+    "off",
     "on",
     "on",
     "on",
@@ -56,13 +56,13 @@
    ],
    "outages": [
     {
-     "start": "00:00",
-     "end": "01:00",
+     "start": "08:00",
+     "end": "12:30",
      "maybe": false
     },
     {
-     "start": "11:00",
-     "end": "17:30",
+     "start": "18:30",
+     "end": "22:00",
      "maybe": false
     }
    ]
@@ -73,15 +73,10 @@
   "group": "GPV1.2",
   "days": [
    {
-    "date": "2026-11-26",
+    "date": "2026-11-27",
     "halfHours": [
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
-     "on",
+     "off",
+     "off",
      "on",
      "on",
      "on",
@@ -104,8 +99,7 @@
      "off",
      "off",
      "off",
-     "on",
-     "on",
+     "off",
      "on",
      "on",
      "on",
@@ -122,17 +116,28 @@
      "off",
      "off",
      "off",
-     "off"
+     "off",
+     "off",
+     "on",
+     "on",
+     "on",
+     "on",
+     "on"
     ],
     "outages": [
      {
-      "start": "10:00",
-      "end": "14:30",
+      "start": "00:00",
+      "end": "01:00",
       "maybe": false
      },
      {
-      "start": "20:30",
-      "end": "24:00",
+      "start": "07:30",
+      "end": "12:30",
+      "maybe": false
+     },
+     {
+      "start": "17:30",
+      "end": "21:30",
       "maybe": false
      }
     ]
